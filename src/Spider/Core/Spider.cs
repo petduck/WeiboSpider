@@ -1,4 +1,4 @@
-﻿using AngleSharp;
+using AngleSharp;
 using AngleSharp.Dom;
 using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json;
@@ -283,9 +283,17 @@ namespace Spider.Core
                 {
                     if (exit)
                     {
-                        Log4Net.LogInfo($"数据导出完成，保存Excel文件");
-                        excel.Save();
-                        Log4Net.LogInfo($"本次任务已完成，程序退出");
+                        if(comments.Count == 0)
+                        {
+                            Log4Net.LogInfo($"本次任务抓取评论数为0，程序退出");
+                            
+                        }
+                        else
+                        {
+                            Log4Net.LogInfo($"数据导出完成，保存Excel文件");
+                            excel.Save();
+                            Log4Net.LogInfo($"本次任务已完成，程序退出");
+                        }
                         break;
                     }
                 }
